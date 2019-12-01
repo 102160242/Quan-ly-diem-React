@@ -2,10 +2,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import objectPath from "object-path";
-import { withRouter } from "react-router-dom";
-import { QuickActions } from "./quick-actions/QuickActions";
+import { withRouter, Link } from "react-router-dom";
+//import { QuickActions } from "./quick-actions/QuickActions";
 import { LayoutContextConsumer } from "../LayoutContext";
-import { ReactComponent as SortNum1Icon } from "../../../_metronic/layout/assets/layout-svg-icons/SortNum1.svg";
+//import { ReactComponent as SortNum1Icon } from "../../../_metronic/layout/assets/layout-svg-icons/SortNum1.svg";
 
 class SubHeader extends React.Component {
   subheaderCssClasses = this.props.htmlClassService.classes.subheader;
@@ -34,18 +34,23 @@ class SubHeader extends React.Component {
                 <h3 className="kt-subheader__title">{title}</h3>
               )}
             </LayoutContextConsumer>
+            {/* 
+            {({ subheader: { desc } }) => (
+              <>
+                <span className="kt-subheader__separator kt-subheader__separator--v" />
+                <span className="kt-subheader__desc">{desc}</span>
 
-            <span className="kt-subheader__separator kt-subheader__separator--v" />
-            <span className="kt-subheader__desc">#XRS-45670</span>
-            <a
-              href="#"
+              </>
+            )} */}
+            <Link
+              to={this.props.history.location.pathname + "/new"}
               className="btn btn-label-warning btn-bold btn-sm btn-icon-h kt-margin-l-10"
             >
-              Add New
-            </a>
+              Thêm mới
+            </Link>
           </div>
 
-          <div className="kt-subheader__toolbar">
+          {/* <div className="kt-subheader__toolbar">
             <div className="kt-subheader__wrapper">
               <button type="button" className="btn kt-subheader__btn-primary">
                 Actions &nbsp;
@@ -53,7 +58,7 @@ class SubHeader extends React.Component {
               </button>
               <QuickActions />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     );

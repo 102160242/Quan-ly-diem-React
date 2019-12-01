@@ -2,7 +2,7 @@ import React from "react";
 import { toAbsoluteUrl } from "../../../_metronic";
 import "../../../_metronic/_assets/sass/pages/error/error-6.scss";
 
-export function ErrorPage6() {
+export function Error403() {
   return (
     <>
       <div className="kt-grid kt-grid--ver kt-grid--root">
@@ -14,13 +14,13 @@ export function ErrorPage6() {
         >
           <div className="kt-error_container">
             <div className="kt-error_subtitle kt-font-light">
-              <h1>Oops...</h1>
+              <h1>Ôi...</h1>
             </div>
 
             <p className="kt-error_description kt-font-light">
-              Looks like something went wrong.
+              Có vẻ như bạn không đủ quyền để truy cập trang này.
               <br />
-              We're working on it
+              Liên hệ Admin để biết thêm chi tiết nhé!
             </p>
           </div>
         </div>

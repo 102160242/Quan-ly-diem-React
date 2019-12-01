@@ -18,36 +18,36 @@ const initialAuthState = {
 };
 
 export const reducer = persistReducer(
-    { storage, key: "auth", whitelist: ["user", "authToken"] },
-    (state = initialAuthState, action) => {
-      switch (action.type) {
-        case actionTypes.Login: {
-          const { authToken } = action.payload;
+  { storage, key: "auth", whitelist: ["user", "authToken"] },
+  (state = initialAuthState, action) => {
+    switch (action.type) {
+      case actionTypes.Login: {
+        const { authToken } = action.payload;
 
-          return { authToken, user: undefined };
-        }
-
-        case actionTypes.Register: {
-          const { authToken } = action.payload;
-
-          return { authToken, user: undefined };
-        }
-
-        case actionTypes.Logout: {
-          routerHelpers.forgotLastLocation();
-          return initialAuthState;
-        }
-
-        case actionTypes.UserLoaded: {
-          const { user } = action.payload;
-
-          return { ...state, user };
-        }
-
-        default:
-          return state;
+        return { authToken, user: undefined };
       }
+
+      case actionTypes.Register: {
+        const { authToken } = action.payload;
+
+        return { authToken, user: undefined };
+      }
+
+      case actionTypes.Logout: {
+        routerHelpers.forgotLastLocation();
+        return initialAuthState;
+      }
+
+      case actionTypes.UserLoaded: {
+        const { user } = action.payload;
+
+        return { ...state, user };
+      }
+
+      default:
+        return state;
     }
+  }
 );
 
 export const actions = {
@@ -71,7 +71,7 @@ export function* saga() {
   });
 
   yield takeLatest(actionTypes.UserRequested, function* userRequested() {
-    const { data: user } = yield getUserByToken();
+    const { data: { data: user } } = yield getUserByToken();
 
     yield put(actions.fulfillUser(user));
   });

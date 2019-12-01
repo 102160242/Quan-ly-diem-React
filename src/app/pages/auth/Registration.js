@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik } from "formik";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -7,6 +7,9 @@ import * as auth from "../../store/ducks/auth.duck";
 import { register } from "../../crud/auth.crud";
 
 function Registration(props) {
+  useEffect(() => {
+    document.title = 'Đăng ký tài khoản mới';
+  }, []);
   return (
     <div className="kt-login__body">
       <div className="kt-login__form">

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
   Portlet,
@@ -68,7 +68,9 @@ export default function Dashboard(props) {
     }),
     [brandColor, dangerColor, primaryColor, successColor]
   );
-
+  useEffect(() => {
+    document.title = 'Dashboards';
+  }, []);
   return (
     <>
       <div className="row">

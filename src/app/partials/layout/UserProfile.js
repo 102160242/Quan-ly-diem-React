@@ -19,22 +19,22 @@ class UserProfile extends React.Component {
           <div className="kt-header__topbar-user">
             {showHi && (
               <span className="kt-header__topbar-welcome kt-hidden-mobile">
-                Hi,
+                Xin chào,
               </span>
             )}
 
             {showHi && (
               <span className="kt-header__topbar-username kt-hidden-mobile">
-                {user.fullname}
+                {user.name}
               </span>
             )}
 
-            {showAvatar && <img alt="Pic" src={user.pic} />}
+            {showAvatar && <img alt="Avatar" src={user.avatar_url} />}
 
             {showBadge && (
               <span className="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">
                 {/* TODO: Should get from currentUser */}
-                John Doe
+                {user.name}
               </span>
             )}
           </div>
@@ -48,17 +48,17 @@ class UserProfile extends React.Component {
             }}
           >
             <div className="kt-user-card__avatar">
-              <img alt="Pic" className="kt-hidden" src={user.pic} />
+              <img alt="Avatar" className="kt-hidden" src={user.avatar_url} />
               <span className="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">
                 S
               </span>
             </div>
-            <div className="kt-user-card__name">{user.fullname}</div>
-            <div className="kt-user-card__badge">
-              <span className="btn btn-success btn-sm btn-bold btn-font-md">
+            <div className="kt-user-card__name">{user.name}</div>
+            {/* <div className="kt-user-card__badge">
+              <span className="btn btn-info btn-sm btn-bold btn-font-md">
                 23 messages
               </span>
-            </div>
+            </div> */}
           </div>
           <div className="kt-notification">
             <a className="kt-notification__item">
@@ -67,14 +67,14 @@ class UserProfile extends React.Component {
               </div>
               <div className="kt-notification__item-details">
                 <div className="kt-notification__item-title kt-font-bold">
-                  My Profile
+                  Profile
                 </div>
                 <div className="kt-notification__item-time">
-                  Account settings and more
+                  Thiết lập tài khoản
                 </div>
               </div>
             </a>
-            <a className="kt-notification__item">
+            {/* <a className="kt-notification__item">
               <div className="kt-notification__item-icon">
                 <i className="flaticon2-mail kt-font-warning" />
               </div>
@@ -112,13 +112,13 @@ class UserProfile extends React.Component {
                   latest tasks and projects
                 </div>
               </div>
-            </a>
+            </a> */}
             <div className="kt-notification__custom">
               <Link
                 to="/logout"
                 className="btn btn-label-brand btn-sm btn-bold"
               >
-                Sign Out
+                Đăng xuất
               </Link>
             </div>
           </div>

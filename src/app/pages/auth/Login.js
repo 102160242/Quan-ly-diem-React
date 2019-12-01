@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import { connect } from "react-redux";
@@ -22,6 +22,10 @@ function Login(props) {
     setLoading(false);
     setLoadingButtonStyle({ paddingRight: "2.5rem" });
   };
+
+  useEffect(() => {
+    document.title = 'Đăng nhập vào hệ thống';
+  }, []);
 
   return (
     <>

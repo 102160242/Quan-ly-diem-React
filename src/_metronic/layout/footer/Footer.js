@@ -20,20 +20,20 @@ class Footer extends React.Component {
               rel="noopener noreferrer"
               className="kt-link"
             >
-              Keenthemes
+              Team 8
             </a>
           </div>
           <div className="kt-footer__menu">
             <a
-              href="http://keenthemes.com/metronic"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="kt-footer__menu-link kt-link"
             >
-              About
+              Thông tin
             </a>
             <a
-              href="http://keenthemes.com/metronic"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="kt-footer__menu-link kt-link"
@@ -41,12 +41,12 @@ class Footer extends React.Component {
               Team
             </a>
             <a
-              href="http://keenthemes.com/metronic"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="kt-footer__menu-link kt-link"
             >
-              Contact
+              Liên hệ
             </a>
           </div>
         </div>

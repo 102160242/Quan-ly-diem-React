@@ -81,7 +81,7 @@ export const initLayoutConfig = {
   },
   subheader: {
     display: true,
-    displayDesc: false,
+    displayDesc: true,
     displayDaterangepicker: true,
     layout: "subheader-v1",
     fixed: true,
