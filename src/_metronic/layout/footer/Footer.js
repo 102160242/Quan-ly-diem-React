@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import objectPath from "object-path";
 import * as builder from "../../ducks/builder";
@@ -14,40 +15,40 @@ class Footer extends React.Component {
         <div className={`kt-container ${this.props.footerContainerClasses}`}>
           <div className="kt-footer__copyright">
             {today.toString()}&nbsp;&copy;&nbsp;
-            <a
-              href="http://keenthemes.com/metronic"
+            <Link
+              to=""
               target="_blank"
               rel="noopener noreferrer"
               className="kt-link"
             >
               Team 8
-            </a>
+            </Link>
           </div>
           <div className="kt-footer__menu">
-            <a
-              href="#"
+            <Link
+              to=""
               target="_blank"
               rel="noopener noreferrer"
               className="kt-footer__menu-link kt-link"
             >
               Thông tin
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to=""
               target="_blank"
               rel="noopener noreferrer"
               className="kt-footer__menu-link kt-link"
             >
               Team
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to=""
               target="_blank"
               rel="noopener noreferrer"
               className="kt-footer__menu-link kt-link"
             >
               Liên hệ
-            </a>
+            </Link>
           </div>
         </div>
       </div>
