@@ -4,6 +4,10 @@ import Builder from "./Builder";
 import Dashboard from "./Dashboard";
 import { LayoutSplashScreen } from "../../../_metronic";
 import Users from './Users';
+import Students from "./Students";
+import UniversityClasses from "./UniversityClasses";
+import CourseClasses from "./CourseClasses";
+import Courses from "./Courses";
 
 export default function HomePage() {
   return (
@@ -16,6 +20,10 @@ export default function HomePage() {
         <Route path="/builder" component={Builder} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/users" component={Users} />
+        <Route path="/students" component={Students} />
+        <Route path="/university-classes" component={UniversityClasses} />
+        <Route path="/courses" component={Courses} />
+        <Route path="/course-classes" component={CourseClasses} />
         <Redirect to="/error/404" />
       </Switch>
     </Suspense>
