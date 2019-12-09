@@ -8,6 +8,7 @@ import Students from "./Students";
 import UniversityClasses from "./UniversityClasses";
 import CourseClasses from "./CourseClasses";
 import Courses from "./Courses";
+import Teachers from "./Teachers";
 
 export default function HomePage() {
   return (
@@ -20,6 +21,7 @@ export default function HomePage() {
         <Route path="/builder" component={Builder} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/users" component={Users} />
+        <Route path="/teachers" component={Teachers} />
         <Route path="/students" component={Students} />
         <Route path="/university-classes" component={UniversityClasses} />
         <Route path="/courses" component={Courses} />

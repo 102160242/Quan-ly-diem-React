@@ -30,6 +30,12 @@ export default {
         page: "users"
       },
       {
+        title: "Hồ sơ Giảng viên",
+        root: true,
+        icon: "fas fa-user-tie",
+        page: "teachers"
+      },
+      {
         title: "Sinh viên",
         root: true,
         icon: "fas fa-users",
