@@ -16,7 +16,7 @@ import Delete from '@material-ui/icons/Delete';
 import Edit from '@material-ui/icons/Edit';
 import Visibility from '@material-ui/icons/Visibility';
 
-export default function MyPage(props) {
+export default function Users(props) {
     useEffect(() => {
         document.title = 'Nhân sự';
         // Lay du lieu
@@ -103,25 +103,40 @@ export default function MyPage(props) {
             // }
         },
         {
+            name: "avatar_url", label: "Avatar",
+            options: {
+                customBodyRender: (value) => {
+                    return <Avatar src={value} className="" alt="Avatar" />
+                },
+                filter: false,
+                sort: false,
+            }
+        },
+        {
             name: "name", label: "Tên"
+        },
+        {
+            name: "gender", label: "Giới tính",
+            options: {
+                customBodyRender: (value) => {
+                    if(value) return <span className="kt-badge kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">Nam</span>
+                    else return <span className="kt-badge kt-badge--unified-danger kt-badge--lg kt-badge--rounded kt-badge--bold">Nữ</span>
+                }
+            }
+        },
+        {
+            name: "birthday", label: "Ngày sinh"
+        },
+        {
+            name: "phone_number", label: "Số điện thoại"
         },
         {
             name: "email", label: "Email"
         },
         {
-            name: "avatar_url", label: "Avatar",
-            options: {
-                customBodyRender: (value, tableMeta, updateValue) => {
-                    return <Avatar src={value} className="" alt="Cinque Terre" />
-                },
-                filter: false,
-                sort: false
-            }
-        },
-        {
             name: "is_admin", label: "Admin",
             options: {
-                customBodyRender: (value, tableMeta, updateValue) => {
+                customBodyRender: (value) => {
                     if (value) {
                         return (
                             <Tooltip title="Có quyền Admin">
@@ -142,7 +157,7 @@ export default function MyPage(props) {
         {
             name: "is_teacher", label: "Giảng viên",
             options: {
-                customBodyRender: (value, tableMeta, updateValue) => {
+                customBodyRender: (value) => {
                     if (value) {
                         return (
                             <Tooltip title="Là giảng viên của trường">
