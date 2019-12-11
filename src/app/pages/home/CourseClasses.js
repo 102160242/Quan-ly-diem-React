@@ -56,7 +56,7 @@ export default function CourseClasses(props) {
         })
         .catch((e) => {
             alertError(e);
-        });;
+        });
     }
     const getData = (params) => {
         getCourseClasses(params).then((result) => {

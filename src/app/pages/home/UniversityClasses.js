@@ -101,6 +101,9 @@ export default function UniversityClasses(props) {
             name: "academic_year", label: "Khoá"
         },
         {
+            name: "faculty", label: "Khoa"
+        },
+        {
             name: "total_students", label: "Số sinh viên"
         },
         {

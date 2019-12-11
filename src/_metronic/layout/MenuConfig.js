@@ -59,6 +59,19 @@ export default {
         icon: "fas fa-book-reader",
         page: "course-classes"
       },
+      { section: "Xem điểm" },
+      {
+        title: "Theo lớp học phần",
+        root: true,
+        icon: "fas fa-book-reader",
+        page: "scores"
+      },
+      // {
+      //   title: "Theo sinh viên",
+      //   root: true,
+      //   icon: "fas fa-book-reader",
+      //   page: "student-scores"
+      // },
     ]
   }
 };
