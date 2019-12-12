@@ -1,3 +1,4 @@
+import swal from 'sweetalert';
 export function removeCSSClass(ele, cls) {
   const reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
   ele.className = ele.className.replace(reg, " ");
@@ -24,8 +25,22 @@ export function setupAxios(axios, store) {
     },
     err => Promise.reject(err)
   );
-}
 
+  // Xử lý response
+  axios.interceptors.response.use((response) => {
+    return response;
+  }, 
+  (error) => {
+    if (!!error.response) {
+      if(error.response.status === 401) // Nếu Token không còn hiệu lực
+      {
+        var logoutURL = toAbsoluteUrl('/logout');
+        window.location.replace(logoutURL); // Logout
+      }
+    }
+    return Promise.reject(error);
+  })
+}
 
 /*  removeStorage: removes a key from localStorage and its sibling expiracy key
     params:

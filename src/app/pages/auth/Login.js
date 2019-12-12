@@ -90,6 +90,7 @@ function Login(props) {
                   })
                   .catch((e) => {
                     var messages;
+                    console.log(e)
                     if (e.response == null) {
                       messages = ["Có lỗi xảy ra!"]
                     }

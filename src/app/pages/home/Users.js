@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MUIDataTable from "mui-datatables";
 import { getUsers, deleteUser } from '../../crud/users.crud';
@@ -21,7 +22,7 @@ export default function Users(props) {
         // Lay du lieu
         getData();
     }, []);
-
+    const auth = useSelector(state => state.auth);
     const getData = () => {
         getUsers().then((result) => {
             var data = result.data.data;
@@ -185,14 +186,17 @@ export default function Users(props) {
                             <Tooltip title="Xem">
                                 <Link to={path + tableMeta.rowData[0]} style={{ textDecoration: 'none', color: 'inherit' }}><Visibility fontSize="large" /></Link>
                             </Tooltip>
+                            {auth.user.is_admin &&
+                                <>
+                                    <Tooltip title="Sửa">
+                                        <Link to={path + tableMeta.rowData[0] + "/edit"} style={{ textDecoration: 'none', color: 'inherit' }}><Edit fontSize="large" /></Link>
+                                    </Tooltip>
 
-                            <Tooltip title="Sửa">
-                                <Link to={path + tableMeta.rowData[0] + "/edit"} style={{ textDecoration: 'none', color: 'inherit' }}><Edit fontSize="large" /></Link>
-                            </Tooltip>
-
-                            <Tooltip title="Xoá">
-                                <Delete fontSize="large" onClick={() => { deleteItem(tableMeta.rowData[0]) }} />
-                            </Tooltip>
+                                    <Tooltip title="Xoá">
+                                        <Delete fontSize="large" onClick={() => { deleteItem(tableMeta.rowData[0]) }} />
+                                    </Tooltip>
+                                </>
+                            }
                         </>
                     )
                 },

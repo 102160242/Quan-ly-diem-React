@@ -20,26 +20,30 @@ export default {
         icon: "flaticon2-architecture-and-city",
         page: "dashboard",
         translate: "MENU.DASHBOARD",
-        bullet: "dot"
+        bullet: "dot",
+        admin_only: true
       },
       { section: "Quản lý" },
       {
         title: "Nhân sự",
         root: true,
         icon: "fas fa-user-tie",
-        page: "users"
+        page: "users",
+        admin_only: true
       },
       {
         title: "Hồ sơ Giảng viên",
         root: true,
         icon: "fas fa-user-tie",
-        page: "teachers"
+        page: "teachers",
+        admin_only: true
       },
       {
         title: "Sinh viên",
         root: true,
         icon: "fas fa-users",
-        page: "students"
+        page: "students",
+        admin_only: true
       },
       {
         title: "Lớp sinh hoạt",
@@ -51,7 +55,8 @@ export default {
         title: "Học phần",
         root: true,
         icon: "fas fa-book-open",
-        page: "courses"
+        page: "courses",
+        admin_only: true
       },
       {
         title: "Lớp học phần",
