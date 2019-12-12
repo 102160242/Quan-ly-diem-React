@@ -24,11 +24,11 @@ export default function Students(props) {
             var t = [];
             for (var i = data.to; i >= data.from; i--) t.push(i);
             setAcademicYear(t);
-            getData({ "academic_year": data.to});
+            getData({ "academic_year": data.to });
         })
-        .catch((e) => {
-            alertError(e);
-        });
+            .catch((e) => {
+                alertError(e);
+            });
     }
     const getData = (params) => {
         getStudents(params).then((result) => {
@@ -36,9 +36,9 @@ export default function Students(props) {
             setTotal(data.length);
             setData(data);
         })
-        .catch((e) => {
-            alertError(e);
-        });
+            .catch((e) => {
+                alertError(e);
+            });
     }
     const deleteItem = (id) => {
 

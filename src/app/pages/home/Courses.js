@@ -6,20 +6,18 @@ import { red } from "@material-ui/core/colors";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { getTextLabels } from './_datatable_locale';
 import swal from 'sweetalert';
-import { toAbsoluteUrl } from "../../../_metronic";
 
 import Tooltip from "@material-ui/core/Tooltip";
 import Delete from '@material-ui/icons/Delete';
 import Edit from '@material-ui/icons/Edit';
 import Visibility from '@material-ui/icons/Visibility';
-import { getMeta, getCourses, deleteCourse } from "../../crud/courses.crud";
+import { getCourses, deleteCourse } from "../../crud/courses.crud";
 
 export default function Courses(props) {
     useEffect(() => {
         document.title = 'Học phần';
         getData();
         // Lay du lieu
-        //getData();
     }, []);
     //const [semester, setSemester] = useState([]);
     // const prepareSemester = () => {
@@ -66,9 +64,9 @@ export default function Courses(props) {
             setTotal(data.length);
             setData(data);
         })
-        .catch((e) => {
-            alertError(e);
-        });
+            .catch((e) => {
+                alertError(e);
+            });
     }
     const deleteItem = (id) => {
 
@@ -89,15 +87,14 @@ export default function Courses(props) {
                         });
                         getData(); // Lay lai du lieu
                     })
-                    .catch((e) => {
-                        alertError(e);
-                    });
+                        .catch((e) => {
+                            alertError(e);
+                        });
                 }
             });
 
     }
-    const alertError = (e) =>
-    {
+    const alertError = (e) => {
         if (!!e.response) {
             swal({
                 icon: 'error',
@@ -181,8 +178,8 @@ export default function Courses(props) {
     // }
     return (
         <>
-        <div className="row">
-            {/* <div className="col-md-3 mb-3">
+            <div className="row">
+                {/* <div className="col-md-3 mb-3">
                 <label htmlFor="semester">Chọn kỳ học</label>
                 <select className="form-control" id="semester" onChange={handleSemesterChange}>
                     { Object.keys(semester).reverse().map((i, k) => {
@@ -190,17 +187,17 @@ export default function Courses(props) {
                     }) }
                 </select>
             </div> */}
-            <div className="col-12">
-                <MuiThemeProvider theme={getMuiTheme()}>
-                    <MUIDataTable
-                        title={"Danh sách học phần"}
-                        data={data}
-                        columns={columns}
-                        options={options}
-                    />
-                </MuiThemeProvider>
+                <div className="col-12">
+                    <MuiThemeProvider theme={getMuiTheme()}>
+                        <MUIDataTable
+                            title={"Danh sách học phần"}
+                            data={data}
+                            columns={columns}
+                            options={options}
+                        />
+                    </MuiThemeProvider>
+                </div>
             </div>
-        </div>
         </>
     );
 }

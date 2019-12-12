@@ -10,6 +10,7 @@ import CourseClasses from "./CourseClasses";
 import Courses from "./Courses";
 import Teachers from "./Teachers";
 import Scores from "./Scores";
+import StudentScores from "./StudentScores";
 
 export default function HomePage() {
   return (
@@ -27,7 +28,8 @@ export default function HomePage() {
         <Route path="/university-classes" component={UniversityClasses} />
         <Route path="/courses" component={Courses} />
         <Route path="/course-classes" component={CourseClasses} />
-        <Route path="/scores" component={Scores} />
+        <Route path="/course-class-scores" component={Scores} />
+        <Route path="/student-scores" component={StudentScores} />
         <Redirect to="/error/404" />
       </Switch>
     </Suspense>

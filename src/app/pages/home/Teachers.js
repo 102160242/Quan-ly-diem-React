@@ -100,7 +100,7 @@ export default function Teachers(props) {
             name: "user", label: "Tên",
             options: {
                 customBodyRender: (value) => {
-                    return <><Link to={toAbsoluteUrl('users/' + value.id )} style={{ color: "black"}}><Avatar src={value.avatar_url} className="" alt="Avatar" /> {value.name}</Link></>;
+                    return <><Link to={toAbsoluteUrl('users/' + value.id)} style={{ color: "black" }}><Avatar src={value.avatar_url} className="" alt="Avatar" /> {value.name}</Link></>;
                 }
             }
         },
@@ -108,7 +108,7 @@ export default function Teachers(props) {
             name: "academic_rank", label: "Học hàm",
             options: {
                 customBodyRender: (value) => {
-                    if(!!value) return value;
+                    if (!!value) return value;
                     else return "Không";
                 }
             }
@@ -117,7 +117,7 @@ export default function Teachers(props) {
             name: "degree", label: "Học vị",
             options: {
                 customBodyRender: (value) => {
-                    if(!!value) return value;
+                    if (!!value) return value;
                     else return "Không";
                 }
             }
@@ -126,7 +126,7 @@ export default function Teachers(props) {
             name: "specialization", label: "Chuyên môn",
             options: {
                 customBodyRender: (value) => {
-                    if(!!value) return value;
+                    if (!!value) return value;
                     else return "Không";
                 }
             }
@@ -135,7 +135,7 @@ export default function Teachers(props) {
             name: "faculty", label: "Khoa",
             options: {
                 customBodyRender: (value) => {
-                    if(!!value) return value;
+                    if (!!value) return value;
                     else return "Không";
                 }
             }

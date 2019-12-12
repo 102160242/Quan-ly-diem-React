@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table'
-import { getTeachers, deleteTeacher } from '../../crud/teachers.crud';
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import { getTextLabels } from './_datatable_locale';
 import swal from 'sweetalert';
 
-import { toAbsoluteUrl } from "../../../_metronic";
 import { getScores, updateScore } from '../../crud/scores.crud';
 import { getMeta, getCourseClasses } from "../../crud/course_classes.crud";
 
 export default function Scores(props) {
     useEffect(() => {
-        document.title = 'Điểm';
+        document.title = 'Điểm lớp học phần';
         // Lay du lieu
         prepareSemester();
     }, []);
@@ -177,7 +173,8 @@ export default function Scores(props) {
                     columns={state.columns}
                     data={state.data}
                     options={{
-                        exportButton: true
+                        exportButton: true,
+                        pageSize: 20
                     }}
                     editable={{
                         onRowUpdate: (newData, oldData) =>

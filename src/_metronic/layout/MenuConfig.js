@@ -64,14 +64,14 @@ export default {
         title: "Theo lớp học phần",
         root: true,
         icon: "fas fa-book-reader",
-        page: "scores"
+        page: "course-class-scores"
       },
-      // {
-      //   title: "Theo sinh viên",
-      //   root: true,
-      //   icon: "fas fa-book-reader",
-      //   page: "student-scores"
-      // },
+      {
+        title: "Theo sinh viên",
+        root: true,
+        icon: "fas fa-user-graduate",
+        page: "student-scores"
+      },
     ]
   }
 };

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import MUIDataTable from "mui-datatables";
 import { getUsers, deleteUser } from '../../crud/users.crud';
-//import axios from 'axios';
 import { red } from "@material-ui/core/colors";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { getTextLabels } from './_datatable_locale';
@@ -119,7 +118,7 @@ export default function Users(props) {
             name: "gender", label: "Giới tính",
             options: {
                 customBodyRender: (value) => {
-                    if(value) return <span className="kt-badge kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">Nam</span>
+                    if (value) return <span className="kt-badge kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">Nam</span>
                     else return <span className="kt-badge kt-badge--unified-danger kt-badge--lg kt-badge--rounded kt-badge--bold">Nữ</span>
                 }
             }
