@@ -8,3 +8,24 @@ export function getUsers() {
 export function deleteUser(id) {
     return axios.delete(BASE_URL + id);
   }
+
+export function createUser(data){
+  console.log(data)
+  return axios.post(BASE_URL, data, {
+    headers: {
+      "content-type": "multipart/form-data"
+    }
+  });
+}
+
+export function getEditUser(user_id) {
+  return axios.get(BASE_URL+ user_id);
+}
+
+export function editUser(user_id, data) {
+  return axios.post(BASE_URL+ user_id + "?XDEBUG_SESSION_START=F56F122D", data,{
+    headers: {
+      "content-type": "multipart/form-data",
+    }
+  });
+}
