@@ -28,12 +28,15 @@ export default function StudentScores(props) {
             var result = result.data.data;
             setUniversityClass(result);
 
-            var params = {
-                "university_class_id": result[0].id,
-            };
-
-            // Lấy ds các lớp học phần
-            getStudents_(params);
+            if(result.length !== 0)
+            {
+                var params = {
+                    "university_class_id": result[0].id,
+                };
+    
+                // Lấy ds các lớp học phần
+                getStudents_(params);
+            }
         })
             .catch((e) => {
                 alertError(e);

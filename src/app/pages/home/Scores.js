@@ -57,7 +57,7 @@ export default function Scores(props) {
             var data = result.data.data;
             //console.log(data);
             setCourseClasses(data);
-            getData(data[0].id);
+            if(data.length !== 0) getData(data[0].id);
         })
         .catch((e) => {
             alertError(e);

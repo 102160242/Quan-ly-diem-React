@@ -1,4 +1,3 @@
-import swal from 'sweetalert';
 export function removeCSSClass(ele, cls) {
   const reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
   ele.className = ele.className.replace(reg, " ");
@@ -36,6 +35,11 @@ export function setupAxios(axios, store) {
       {
         var logoutURL = toAbsoluteUrl('/logout');
         window.location.replace(logoutURL); // Logout
+      }
+      else if(error.response.status === 403)
+      {
+        var _403 = toAbsoluteUrl('/error/403');
+        window.location.replace(_403); // Logout
       }
     }
     return Promise.reject(error);
