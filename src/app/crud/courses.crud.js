@@ -11,3 +11,12 @@ export function getCourses(params = {}) {
 export function deleteCourse(id) {
   return axios.delete(BASE_URL + id);
 }
+
+export function createCourse(data){
+  console.log(data)
+  return axios.post(BASE_URL, data, {
+    headers: {
+      "content-type": "multipart/form-data"
+    }
+  });
+}

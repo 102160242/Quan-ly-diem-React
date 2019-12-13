@@ -23,7 +23,7 @@ export function getEditUser(user_id) {
 }
 
 export function editUser(user_id, data) {
-  return axios.post(BASE_URL+ user_id + "?XDEBUG_SESSION_START=F56F122D", data,{
+  return axios.post(BASE_URL+ user_id , data,{
     headers: {
       "content-type": "multipart/form-data",
     }

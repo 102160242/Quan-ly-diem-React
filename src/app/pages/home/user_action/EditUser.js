@@ -88,7 +88,6 @@ export default function EditPage(props) {
                                 formData.append("email", values.email)
                                 formData.append("name", values.name)
                                 formData.append("gender", values.gender)
-                                formData.append("avatar", values.avatar)
                                 formData.append("is_admin", values.is_admin)
                                 formData.append("is_teacher", values.is_teacher)
                                 formData.append("birthday", values.birthday)

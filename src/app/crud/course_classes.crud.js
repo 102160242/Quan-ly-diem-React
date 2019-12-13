@@ -11,3 +11,16 @@ export function getCourseClasses(params = {}) {
 export function deleteCourseClass(id) {
   return axios.delete(BASE_URL + id);
 }
+
+export function createCourseClass(data){
+  console.log(data)
+  return axios.post(BASE_URL, data);
+}
+
+export function getEditCourseClass(courseclass_id) {
+  return axios.get(BASE_URL+ courseclass_id);
+}
+
+export function editCourseClass(courseclass_id, data) {
+  return axios.patch(BASE_URL+ courseclass_id , data);
+}
