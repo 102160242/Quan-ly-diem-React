@@ -13,6 +13,8 @@ import Courses from "./Courses";
 import Teachers from "./Teachers";
 import CourseClasses_Add from './CourseClasses_action/Add'
 import CourseClasses_Edit from './CourseClasses_action/Edit'
+import Scores from "./Scores";
+import StudentScores from "./StudentScores";
 
 export default function HomePage() {
   return (
@@ -35,6 +37,8 @@ export default function HomePage() {
         <Route exact path="/course-classes" component={CourseClasses} />
         <Route exact path="/course-classes/new" component={CourseClasses_Add} />
         <Route exact path="/course-classes/:courseclass_id/edit" component={CourseClasses_Edit} />
+        <Route path="/course-class-scores" component={Scores} />
+        <Route path="/student-scores" component={StudentScores} />
         <Redirect to="/error/404" />
       </Switch>
     </Suspense>

@@ -1,11 +1,12 @@
 import React from "react";
+import { connect } from 'react-redux';
 import objectPath from "object-path";
 import { Link } from "react-router-dom";
 import MenuItemText from "./MenuItemText";
 import MenuSubmenu from "./MenuSubmenu";
 import clsx from "clsx";
 
-export default class MenuItem extends React.Component {
+class MenuItem extends React.Component {
   asideLeftLIRef = React.createRef();
   isDropdown =  document.body.classList.contains("kt-aside-menu--dropdown");
 
@@ -74,7 +75,6 @@ export default class MenuItem extends React.Component {
   render() {
     const { item, currentUrl, parentItem, layoutConfig } = this.props;
     const isActive = this.isMenuItemIsActive(item);
-
     return (
       <li
         ref={this.asideLeftLIRef}
@@ -96,7 +96,8 @@ export default class MenuItem extends React.Component {
         )}
         data-ktmenu-dropdown-toggle-class={item["dropdown-toggle-class"]}
       >
-        {!item.submenu && (
+
+        {!item.submenu && ((!!item.admin_only && item.admin_only === true && this.props.user.is_admin === true) || !item.admin_only) && (
           <Link to={`/${item.page}`} className="kt-menu__link kt-menu__toggle">
             <MenuItemText item={item} parentItem={parentItem} />
           </Link>
@@ -137,3 +138,10 @@ export default class MenuItem extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state /*, ownProps*/) => {
+  return {
+      user: state.auth.user,
+  }
+}
+export default connect(mapStateToProps, null)(MenuItem);

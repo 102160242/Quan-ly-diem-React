@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
+
 import { Link } from 'react-router-dom';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
@@ -19,6 +21,7 @@ export default function CourseClasses(props) {
         // Lay du lieu
         //getData();
     }, []);
+    const auth = useSelector(state => state.auth);
     const [semester, setSemester] = useState([]);
     const prepareSemester = () => {
         getMeta().then((result) => {
@@ -26,23 +29,20 @@ export default function CourseClasses(props) {
             var to = result.data.data.to;
             var data = [];
             var label = "";
-            for(var i = from; i <= to; i++)
-            {
-                for(var j = 1; j <= 3; j++)
-                {
-                    switch(j)
-                    {
+            for (var i = from; i <= to; i++) {
+                for (var j = 1; j <= 3; j++) {
+                    switch (j) {
                         case 1:
                             label = "Kỳ 2 " + (i - 1) + "-" + i;
                             break;
-                        case 2: 
+                        case 2:
                             label = "Kỳ hè " + i;
                             break;
                         case 3:
-                            label = "Kỳ 1 " + i + "-" + (i+1);
+                            label = "Kỳ 1 " + i + "-" + (i + 1);
                             break;
                     }
-                    data[label] = {"year": i, "semester": j}; 
+                    data[label] = { "year": i, "semester": j };
                 }
             }
             setSemester(data);
@@ -54,9 +54,9 @@ export default function CourseClasses(props) {
             //console.log(params)
             getData(params);
         })
-        .catch((e) => {
-            alertError(e);
-        });;
+            .catch((e) => {
+                alertError(e);
+            });
     }
     const getData = (params) => {
         getCourseClasses(params).then((result) => {
@@ -64,9 +64,9 @@ export default function CourseClasses(props) {
             setTotal(data.length);
             setData(data);
         })
-        .catch((e) => {
-            alertError(e);
-        });
+            .catch((e) => {
+                alertError(e);
+            });
     }
     const deleteItem = (id) => {
 
@@ -87,15 +87,14 @@ export default function CourseClasses(props) {
                         });
                         getData(); // Lay lai du lieu
                     })
-                    .catch((e) => {
-                        alertError(e);
-                    });
+                        .catch((e) => {
+                            alertError(e);
+                        });
                 }
             });
 
     }
-    const alertError = (e) =>
-    {
+    const alertError = (e) => {
         if (!!e.response) {
             swal({
                 icon: 'error',
@@ -162,14 +161,17 @@ export default function CourseClasses(props) {
                             <Tooltip title="Xem">
                                 <Link to={path + tableMeta.rowData[0]} style={{ textDecoration: 'none', color: 'inherit' }}><Visibility fontSize="large" /></Link>
                             </Tooltip>
+                            { auth.user.is_admin && 
+                                <>
+                                <Tooltip title="Sửa">
+                                    <Link to={path + tableMeta.rowData[0] + "/edit"} style={{ textDecoration: 'none', color: 'inherit' }}><Edit fontSize="large" /></Link>
+                                </Tooltip>
 
-                            <Tooltip title="Sửa">
-                                <Link to={path + tableMeta.rowData[0] + "/edit"} style={{ textDecoration: 'none', color: 'inherit' }}><Edit fontSize="large" /></Link>
-                            </Tooltip>
-
-                            <Tooltip title="Xoá">
-                                <Delete fontSize="large" onClick={() => { deleteItem(tableMeta.rowData[0]) }} />
-                            </Tooltip>
+                                <Tooltip title="Xoá">
+                                    <Delete fontSize="large" onClick={() => { deleteItem(tableMeta.rowData[0]) }} />
+                                </Tooltip>
+                                </>
+                            }
                         </>
                     )
                 },
@@ -200,26 +202,26 @@ export default function CourseClasses(props) {
     }
     return (
         <>
-        <div className="row">
-            <div className="col-md-3 mb-3">
-                <label htmlFor="semester">Chọn kỳ học</label>
-                <select className="form-control" id="semester" onChange={handleSemesterChange}>
-                    { Object.keys(semester).reverse().map((i, k) => {
-                        return <option value={i} key={k}>{i}</option>
-                    }) }
-                </select>
+            <div className="row">
+                <div className="col-md-3 mb-3">
+                    <label htmlFor="semester">Chọn kỳ học</label>
+                    <select className="form-control" id="semester" onChange={handleSemesterChange}>
+                        {Object.keys(semester).reverse().map((i, k) => {
+                            return <option value={i} key={k}>{i}</option>
+                        })}
+                    </select>
+                </div>
+                <div className="col-12">
+                    <MuiThemeProvider theme={getMuiTheme()}>
+                        <MUIDataTable
+                            title={"Danh sách lớp học phần"}
+                            data={data}
+                            columns={columns}
+                            options={options}
+                        />
+                    </MuiThemeProvider>
+                </div>
             </div>
-            <div className="col-12">
-                <MuiThemeProvider theme={getMuiTheme()}>
-                    <MUIDataTable
-                        title={"Danh sách lớp học phần"}
-                        data={data}
-                        columns={columns}
-                        options={options}
-                    />
-                </MuiThemeProvider>
-            </div>
-        </div>
         </>
     );
 }

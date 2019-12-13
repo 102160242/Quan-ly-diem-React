@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toAbsoluteUrl } from '../../_metronic/utils/utils';
 
 export const LOGIN_URL = process.env.REACT_APP_API_URL + "auth/login";
 export const REGISTER_URL = process.env.REACT_APP_API_URL + "auth/register";
@@ -20,5 +21,13 @@ export function requestPassword(email) {
 
 export function getUserByToken() {
   // Authorization head should be fulfilled in interceptor.
-  return axios.get(ME_URL);
+  return axios.get(ME_URL)/*.then(response => {
+    console.log(response.data.data);
+    if(!response.data.data.is_admin && !response.data.data.is_teacher) // Không cho truy cập trang nếu k có quyền
+    {
+      var logoutURL = toAbsoluteUrl('/logout');
+      console.log(response)
+      window.location.replace(logoutURL); // Logout
+    }
+  })*/;
 }

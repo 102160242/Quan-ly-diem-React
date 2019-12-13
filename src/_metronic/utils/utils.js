@@ -24,8 +24,27 @@ export function setupAxios(axios, store) {
     },
     err => Promise.reject(err)
   );
-}
 
+  // Xử lý response
+  axios.interceptors.response.use((response) => {
+    return response;
+  }, 
+  (error) => {
+    if (!!error.response) {
+      if(error.response.status === 401) // Nếu Token không còn hiệu lực
+      {
+        var logoutURL = toAbsoluteUrl('/logout');
+        window.location.replace(logoutURL); // Logout
+      }
+      else if(error.response.status === 403)
+      {
+        var _403 = toAbsoluteUrl('/error/403');
+        window.location.replace(_403); // Logout
+      }
+    }
+    return Promise.reject(error);
+  })
+}
 
 /*  removeStorage: removes a key from localStorage and its sibling expiracy key
     params:

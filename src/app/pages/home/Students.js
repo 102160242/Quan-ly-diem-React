@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
@@ -17,6 +18,7 @@ export default function Students(props) {
         // Lay du lieu
         prepareData();
     }, []);
+    const auth = useSelector(state => state.auth);
 
     const prepareData = () => {
         getMeta().then((result) => {
@@ -24,11 +26,11 @@ export default function Students(props) {
             var t = [];
             for (var i = data.to; i >= data.from; i--) t.push(i);
             setAcademicYear(t);
-            getData({ "academic_year": data.to});
+            getData({ "academic_year": data.to });
         })
-        .catch((e) => {
-            alertError(e);
-        });
+            .catch((e) => {
+                alertError(e);
+            });
     }
     const getData = (params) => {
         getStudents(params).then((result) => {
@@ -36,9 +38,9 @@ export default function Students(props) {
             setTotal(data.length);
             setData(data);
         })
-        .catch((e) => {
-            alertError(e);
-        });
+            .catch((e) => {
+                alertError(e);
+            });
     }
     const deleteItem = (id) => {
 
@@ -135,14 +137,17 @@ export default function Students(props) {
                             <Tooltip title="Xem">
                                 <Link to={path + tableMeta.rowData[0]} style={{ textDecoration: 'none', color: 'inherit' }}><Visibility fontSize="large" /></Link>
                             </Tooltip>
+                            { auth.user.is_admin && 
+                                <>
+                                    <Tooltip title="Sửa">
+                                        <Link to={path + tableMeta.rowData[0] + "/edit"} style={{ textDecoration: 'none', color: 'inherit' }}><Edit fontSize="large" /></Link>
+                                    </Tooltip>
 
-                            <Tooltip title="Sửa">
-                                <Link to={path + tableMeta.rowData[0] + "/edit"} style={{ textDecoration: 'none', color: 'inherit' }}><Edit fontSize="large" /></Link>
-                            </Tooltip>
-
-                            <Tooltip title="Xoá">
-                                <Delete fontSize="large" onClick={() => { deleteItem(tableMeta.rowData[0]) }} />
-                            </Tooltip>
+                                    <Tooltip title="Xoá">
+                                        <Delete fontSize="large" onClick={() => { deleteItem(tableMeta.rowData[0]) }} />
+                                    </Tooltip>
+                                </>
+                            }
                         </>
                     )
                 },

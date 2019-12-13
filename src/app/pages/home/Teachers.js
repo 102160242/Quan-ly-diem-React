@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MUIDataTable from "mui-datatables";
 import { getTeachers, deleteTeacher } from '../../crud/teachers.crud';
@@ -19,7 +20,7 @@ export default function Teachers(props) {
         // Lay du lieu
         getData();
     }, []);
-
+    const auth = useSelector(state => state.auth);
     const getData = () => {
         getTeachers().then((result) => {
             var data = result.data.data;
@@ -100,7 +101,7 @@ export default function Teachers(props) {
             name: "user", label: "Tên",
             options: {
                 customBodyRender: (value) => {
-                    return <><Link to={toAbsoluteUrl('users/' + value.id )} style={{ color: "black"}}><Avatar src={value.avatar_url} className="" alt="Avatar" /> {value.name}</Link></>;
+                    return <><Link to={toAbsoluteUrl('users/' + value.id)} style={{ color: "black" }}><Avatar src={value.avatar_url} className="" alt="Avatar" /> {value.name}</Link></>;
                 }
             }
         },
@@ -108,7 +109,7 @@ export default function Teachers(props) {
             name: "academic_rank", label: "Học hàm",
             options: {
                 customBodyRender: (value) => {
-                    if(!!value) return value;
+                    if (!!value) return value;
                     else return "Không";
                 }
             }
@@ -117,7 +118,7 @@ export default function Teachers(props) {
             name: "degree", label: "Học vị",
             options: {
                 customBodyRender: (value) => {
-                    if(!!value) return value;
+                    if (!!value) return value;
                     else return "Không";
                 }
             }
@@ -126,7 +127,7 @@ export default function Teachers(props) {
             name: "specialization", label: "Chuyên môn",
             options: {
                 customBodyRender: (value) => {
-                    if(!!value) return value;
+                    if (!!value) return value;
                     else return "Không";
                 }
             }
@@ -135,7 +136,7 @@ export default function Teachers(props) {
             name: "faculty", label: "Khoa",
             options: {
                 customBodyRender: (value) => {
-                    if(!!value) return value;
+                    if (!!value) return value;
                     else return "Không";
                 }
             }
@@ -151,14 +152,17 @@ export default function Teachers(props) {
                             <Tooltip title="Xem">
                                 <Link to={path + tableMeta.rowData[0]} style={{ textDecoration: 'none', color: 'inherit' }}><Visibility fontSize="large" /></Link>
                             </Tooltip>
+                            {auth.user.is_admin &&
+                                <>
+                                    <Tooltip title="Sửa">
+                                        <Link to={path + tableMeta.rowData[0] + "/edit"} style={{ textDecoration: 'none', color: 'inherit' }}><Edit fontSize="large" /></Link>
+                                    </Tooltip>
 
-                            <Tooltip title="Sửa">
-                                <Link to={path + tableMeta.rowData[0] + "/edit"} style={{ textDecoration: 'none', color: 'inherit' }}><Edit fontSize="large" /></Link>
-                            </Tooltip>
-
-                            <Tooltip title="Xoá">
-                                <Delete fontSize="large" onClick={() => { deleteItem(tableMeta.rowData[0]) }} />
-                            </Tooltip>
+                                    <Tooltip title="Xoá">
+                                        <Delete fontSize="large" onClick={() => { deleteItem(tableMeta.rowData[0]) }} />
+                                    </Tooltip>
+                                </>
+                            }
                         </>
                     )
                 },
