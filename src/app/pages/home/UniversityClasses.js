@@ -6,12 +6,8 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { getTextLabels } from './_datatable_locale';
 import swal from 'sweetalert';
 import { toAbsoluteUrl } from "../../../_metronic";
-
-import Tooltip from "@material-ui/core/Tooltip";
-import Delete from '@material-ui/icons/Delete';
-import Edit from '@material-ui/icons/Edit';
-import Visibility from '@material-ui/icons/Visibility';
 import { getClasses, deleteClass } from "../../crud/university_classes.crud";
+import { Dropdown } from 'react-bootstrap';
 
 export default function UniversityClasses(props) {
     useEffect(() => {
@@ -129,20 +125,20 @@ export default function UniversityClasses(props) {
                     var path = props.history.location.pathname + "/";
                     return (
                         <>
-                            <Tooltip title="Xem">
-                                <Link to={path + tableMeta.rowData[0]} style={{ textDecoration: 'none', color: 'inherit' }}><Visibility fontSize="large" /></Link>
-                            </Tooltip>
-                            {auth.user.is_admin &&
-                                <>
-                                    <Tooltip title="Sửa">
-                                        <Link to={path + tableMeta.rowData[0] + "/edit"} style={{ textDecoration: 'none', color: 'inherit' }}><Edit fontSize="large" /></Link>
-                                    </Tooltip>
-
-                                    <Tooltip title="Xoá">
-                                        <Delete fontSize="large" onClick={() => { deleteItem(tableMeta.rowData[0]) }} />
-                                    </Tooltip>
-                                </>
-                            }
+                        <Dropdown>
+                            <Dropdown.Toggle variant="outline-info" id="dropdown-basic">
+                                <i class="flaticon-more-1"></i>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Link to={path + tableMeta.rowData[0]} className="dropdown-item" style={{ textDecoration: 'none', color: 'inherit' }}><i className="flaticon-information"></i> Xem</Link>
+                                {auth.user.is_admin &&
+                                    <>
+                                        <Link to={path + tableMeta.rowData[0] + "/edit"} className="dropdown-item" style={{ textDecoration: 'none', color: 'inherit' }}><i className="flaticon-edit"></i> Sửa</Link>
+                                        <Link to={"#"} className="dropdown-item" onClick={() => { deleteItem(tableMeta.rowData[0]) }}><i className="flaticon-delete"></i> Xoá</Link>
+                                    </>
+                                }
+                            </Dropdown.Menu>
+                        </Dropdown>
                         </>
                     )
                 },
@@ -158,6 +154,7 @@ export default function UniversityClasses(props) {
     const options = {
         fiter: true,
         filterType: 'multiselect',
+        selectableRows: 'none',
         //serverSide: true,
         count: total,
         responsive: "scrollFullHeight",

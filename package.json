@@ -64,6 +64,7 @@
         "object-path": "^0.11.4",
         "perfect-scrollbar": "^1.4.0",
         "prop-types": "^15.7.2",
+        "query-string": "^6.9.0",
         "react": "^16.10.2",
         "react-addons-create-fragment": "^15.4.2",
         "react-addons-transition-group": "^15.4.2",
