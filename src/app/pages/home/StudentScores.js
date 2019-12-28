@@ -13,6 +13,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import queryString from 'query-string';
 
 export default function StudentScores(props) {
     useEffect(() => {
@@ -30,10 +31,12 @@ export default function StudentScores(props) {
 
             if(result.length !== 0)
             {
+                var queries = getQueries();
+                var id = queries.university_class_id === "" ? result[0].id : queries.university_class_id;
                 var params = {
-                    "university_class_id": result[0].id,
+                    "university_class_id": id,
                 };
-    
+                document.getElementById('universityClass').value = id;
                 // Lấy ds các lớp học phần
                 getStudents_(params);
             }
@@ -46,11 +49,14 @@ export default function StudentScores(props) {
         getStudents(params).then((result) => {
             var data = result.data.data;
             setStudents(data);
-            getData(data[0].id);
+            var queries = getQueries();
+            var id = queries.student_id === "" ? data[0].id : queries.student_id;
+            document.getElementById('student').value = id;
+            getData(id);
         })
-            .catch((e) => {
-                alertError(e);
-            });
+        .catch((e) => {
+            alertError(e);
+        });
     }
     const getData = (student_id) => {
         var params = { view: 'student', id: student_id }
@@ -103,7 +109,13 @@ export default function StudentScores(props) {
             })
         }
     }
-
+    const getQueries = () => {
+        var query = queryString.parse(props.location.search, { ignoreQueryPrefix: true });
+        var queries = {};
+        queries["university_class_id"] = query.university_class_id ? query.university_class_id : "";
+        queries["student_id"] = query.student_id ? query.student_id : "";
+        return queries;
+    }
     const [state, setState] = React.useState({
         columns: [],
         data: [],

@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 
 import { getScores, updateScore } from '../../crud/scores.crud';
 import { getMeta, getCourseClasses } from "../../crud/course_classes.crud";
+import queryString from 'query-string';
 
 export default function Scores(props) {
     useEffect(() => {
@@ -24,27 +25,35 @@ export default function Scores(props) {
             {
                 for(var j = 1; j <= 3; j++)
                 {
-                    switch(j)
-                    {
-                        case 1:
-                            label = "Kỳ 2 " + (i - 1) + "-" + i;
-                            break;
-                        case 2: 
-                            label = "Kỳ hè " + i;
-                            break;
-                        case 3:
-                            label = "Kỳ 1 " + i + "-" + (i+1);
-                            break;
-                    }
+                    // switch(j)
+                    // {
+                    //     case 1:
+                    //         label = "Kỳ 2 " + (i - 1) + "-" + i;
+                    //         break;
+                    //     case 2: 
+                    //         label = "Kỳ hè " + i;
+                    //         break;
+                    //     case 3:
+                    //         label = "Kỳ 1 " + i + "-" + (i+1);
+                    //         break;
+                    // }
+                    label = createSemesterLabel(parseInt(j), parseInt(i));
                     data[label] = {"year": i, "semester": j}; 
                 }
             }
             setSemester(data);
+
+            var queries = getQueries();
+            if(queries.year !== "" && queries.semester !== "")
+            {
+                label = createSemesterLabel(parseInt(queries.semester), parseInt(queries.year));
+            }
             var params = {
                 "year": data[label].year,
                 "semester": data[label].semester
             };
 
+            document.getElementById('semester').value = label;
             // Lấy ds các lớp học phần
             getCourseClasses_(params);
         })
@@ -52,12 +61,32 @@ export default function Scores(props) {
             alertError(e);
         });
     }
+    const createSemesterLabel = (semester, year) => {
+        var label;
+        switch(semester)
+        {
+            case 1:
+                label = "Kỳ 2 " + (year - 1) + "-" + year;
+                break;
+            case 2: 
+                label = "Kỳ hè " + year;
+                break;
+            case 3:
+                label = "Kỳ 1 " + year + "-" + (year+1);
+                break;
+        }
+        return label;
+    }
     const getCourseClasses_ = (params) => {
         getCourseClasses(params).then((result) => {
             var data = result.data.data;
             //console.log(data);
             setCourseClasses(data);
-            if(data.length !== 0) getData(data[0].id);
+            var queries = getQueries();
+            var id = queries.course_class_id !== "" ? parseInt(queries.course_class_id) : (data.length !== 0 ? data[0].id : "");
+
+            document.getElementById('courseClass').value = id;
+            if(id !== "") getData(id);
         })
         .catch((e) => {
             alertError(e);
@@ -121,6 +150,14 @@ export default function Scores(props) {
                 text: 'Đã có lỗi xảy ra khi kết nối đến server!',
             })
         }
+    }
+    const getQueries = () => {
+        var query = queryString.parse(props.location.search, { ignoreQueryPrefix: true });
+        var queries = {};
+        queries["year"] = query.year ? query.year : "";
+        queries["semester"] = query.semester ? query.semester : "";
+        queries["course_class_id"] = query.course_class_id ? query.course_class_id : "";
+        return queries;
     }
     const getMuiTheme = () => createMuiTheme({
         overrides: {
