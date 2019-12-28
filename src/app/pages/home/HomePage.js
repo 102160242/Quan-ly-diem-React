@@ -21,6 +21,8 @@ import CourseClasses_Edit from './CourseClasses_action/Edit';
 import CourseClasses_Show from './CourseClasses_action/ShowCClass';
 import Scores from "./Scores";
 import StudentScores from "./StudentScores";
+import UniversityClasses_Add from "./UniversityClasses_action/Add";
+import UniversityClasses_Edit from "./UniversityClasses_action/Edit";
 
 export default function HomePage() {
   return (
@@ -45,6 +47,8 @@ export default function HomePage() {
         <Route exact path="/university-classes/:class_id" component ={UniversityClass_Show}/>
         <Route exact path="/courses" component={Courses} />
         <Route exact path="/courses/:course_id" component={Courses_Show} />
+        <Route exact path="/university-classes/:universityclass_id/edit" component={UniversityClasses_Edit} />
+        <Route exact path="/university-classes/new" component={UniversityClasses_Add} />
         <Route exact path="/course-classes" component={CourseClasses} />
         <Route exact path="/course-classes/:courseclass_id" component={CourseClasses_Show} />
         <Route exact path="/course-classes/new" component={CourseClasses_Add} />
