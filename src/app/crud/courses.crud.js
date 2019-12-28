@@ -18,10 +18,9 @@ export function deleteCourse(id) {
 }
 
 export function createCourse(data){
-  console.log(data)
-  return axios.post(BASE_URL, data, {
-    headers: {
-      "content-type": "multipart/form-data"
-    }
-  });
+  return axios.post(BASE_URL, data);
+}
+
+export function editCourse(id, data){
+  return axios.patch(BASE_URL + id, data);
 }
