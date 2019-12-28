@@ -51,34 +51,34 @@ export default function CourseClasses_Show(props) {
                     <Container maxWidth="sm">
                         <div className="kt-heading kt-heading--md">Thông Tin lớp học phần:</div>
                         <div className="row">
-                            <div className="col-xl-12">
+                            <div className="col-md-12">
                                 <div className="form-group row">
-                                    <label className="col-xl-3 col-lg-3 col-form-label">Tên lớp học phần</label>
+                                    <label className="col-md-3 col-form-label">Tên lớp học phần</label>
                                     <p className="col-md-3 col-lg-3 col-form-label" name="name">{data.name}</p>
                                 </div>
 
                                 <div className="form-group row">
-                                    <label className="col-xl-3 col-lg-3 col-form-label">Học phần</label>
+                                    <label className="col-md-3 col-form-label">Học phần</label>
                                     <p className="col-md-3 col-lg-3 col-form-label"><Link to={"/courses/" + course_id}>{data.course && data.course.name}</Link></p>
                                 </div>
 
                                 <div className="form-group row">
-                                    <label className="col-xl-3 col-lg-3 col-form-label">Tên giảng viên</label>
+                                    <label className="col-md-3 col-form-label">Tên giảng viên</label>
                                     <p className="col-md-3 col-lg-3 col-form-label"><Link to={"/teachers/" + teacher_id}>{data.teacher && data.teacher.name}</Link></p>
                                 </div>
                                 
                                 <div className="form-group row">
-                                    <label className="col-xl-3 col-lg-3 col-form-label">Số tín chỉ </label>
+                                    <label className="col-md-3 col-form-label">Số tín chỉ </label>
                                     <p className="col-md-3 col-lg-3 col-form-label" >{data.credits}</p>
                                 </div>
 
                                 <div className="form-group row">
-                                    <label className="col-xl-3 col-lg-3 col-form-label">Học kỳ - Năm Học </label>
+                                    <label className="col-md-3 col-form-label">Học kỳ - Năm Học </label>
                                     <p className="col-md-3 col-lg-3 col-form-label" >Học kỳ {data.semester} - {data.year}</p>
                                 </div>
 
                                 <div className="form-group row">
-                                    <label className="col-xl-3 col-lg-3 col-form-label">Số sinh viên </label>
+                                    <label className="col-md-3 col-form-label">Số sinh viên </label>
                                     <p className="col-md-3 col-lg-3 col-form-label" ><Link to={"/students"}>{data.total_students}</Link></p>
                                 </div>
 

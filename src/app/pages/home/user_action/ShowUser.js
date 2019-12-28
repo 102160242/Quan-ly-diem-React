@@ -46,10 +46,10 @@ export default function ShowPage(props) {
                     <Container maxWidth="md">
                         <div className="kt-heading kt-heading--md">Thông Tin Nhân Viên:</div>
                         <div className="row">
-                            <div className="col-xl-12">
+                            <div className="col-md-12">
                                 <div className="form-group row">
-                                    <label className="col-xl-3 col-lg-3 col-form-label">Ảnh đại diện</label>
-                                    <div className="col-lg-9 col-xl-6">
+                                    <label className="col-md-3 col-form-label">Ảnh đại diện</label>
+                                    <div className="col-md-9">
                                         <div className="kt-avatar kt-avatar--outline" id="kt_user_add_avatar">
                                             <div className="kt-avatar__holder" style={{ backgroundImage: `url(${avatar})` }}></div>
                                         </div>
@@ -57,33 +57,33 @@ export default function ShowPage(props) {
                                 </div>
 
                                 <div className="form-group row">
-                                    <label className="col-xl-3 col-lg-3 col-form-label">Email</label>
-                                    <p className="col-xl-3 col-lg-3 col-form-label" name="email">{data.email}</p>
+                                    <label className="col-md-3 col-form-label">Email</label>
+                                    <p className="col-md-3 col-form-label" name="email">{data.email}</p>
                                 </div>
 
                                 <div className="form-group row">
-                                    <label className="col-xl-3 col-lg-3 col-form-label">Tên</label>
-                                    <p className="col-xl-3 col-lg-3 col-form-label" name="name">{data.name}</p>
+                                    <label className="col-md-3 col-form-label">Tên</label>
+                                    <p className="col-md-3 col-form-label" name="name">{data.name}</p>
                                 </div>
 
                                 <div className="form-group row">
-                                    <label className="col-xl-3 col-lg-3 col-form-label">Giới tính</label>
-                                    <p className="col-xl-3 col-lg-3 col-form-label">{data.gender == 0 ? "Nữ" : "Nam"}</p>
+                                    <label className="col-md-3 col-form-label">Giới tính</label>
+                                    <p className="col-md-3 col-form-label">{data.gender == 0 ? "Nữ" : "Nam"}</p>
                                 </div>
 
                                 <div className="form-group row">
-                                    <label className="col-xl-3 col-lg-3 col-form-label">Ngày sinh </label>
-                                    <p className="col-xl-3 col-lg-3 col-form-label" name="birthday">{data.birthday}</p>
+                                    <label className="col-md-3 col-form-label">Ngày sinh </label>
+                                    <p className="col-md-3 col-form-label" name="birthday">{data.birthday}</p>
                                 </div>
 
                                 <div className="form-group row">
-                                    <label className="col-xl-3 col-lg-3 col-form-label">Số điện thoại </label>
-                                    <p className="col-xl-3 col-lg-3 col-form-label" name="phone_number">{data.phone_number}</p>
+                                    <label className="col-md-3 col-form-label">Số điện thoại </label>
+                                    <p className="col-md-3 col-form-label" name="phone_number">{data.phone_number}</p>
                                 </div>
 
                                 <div className="form-group row">
-                                    <label className="col-xl-3 col-lg-3 col-form-label">Chức vụ</label>
-                                    <div className="col-lg-9 col-xl-9">
+                                    <label className="col-md-3 col-form-label">Chức vụ</label>
+                                    <div className="col-md-9">
                                         <div className="form-check-inline">
                                             <div className="form-control border-0">
                                                 <label className="form-check-label" >
@@ -101,8 +101,8 @@ export default function ShowPage(props) {
 
                                 <div className="kt-form__actions">
                                     <div className="row">
-                                        <div className="col-xl-3"></div>
-                                        <div className="col-lg-9 col-xl-6">
+                                        <div className="col-md-3"></div>
+                                        <div className="col-md-9">
                                             <Link to={user_id + "/edit"} className="mr-3" title="Edit"><button className="btn btn-label-brand btn-bold">Chỉnh sửa</button></Link>
                                         </div>
                                     </div>
