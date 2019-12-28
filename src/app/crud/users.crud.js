@@ -18,7 +18,7 @@ export function createUser(data){
   });
 }
 
-export function getEditUser(user_id) {
+export function getUser(user_id) {
   return axios.get(BASE_URL+ user_id);
 }
 

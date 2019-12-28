@@ -150,7 +150,7 @@ export default function Teachers(props) {
                     return (
                         <>
                             <Tooltip title="Xem">
-                                <Link to={path + tableMeta.rowData[0]} style={{ textDecoration: 'none', color: 'inherit' }}><Visibility fontSize="large" /></Link>
+                                <Link to={path + tableMeta.rowData[1].id} style={{ textDecoration: 'none', color: 'inherit' }}><Visibility fontSize="large" /></Link>
                             </Tooltip>
                             {auth.user.is_admin &&
                                 <>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
 import classnames from 'classnames';
 import { Formik } from "formik";
-import { getEditUser, editUser } from '../../../crud/users.crud'
+import { getUser, editUser } from '../../../crud/users.crud'
 import swal from 'sweetalert';
 
 
@@ -20,7 +20,7 @@ export default function EditPage(props) {
         if (activeTab !== tab) setActiveTab(tab);
     }
     const getData = () => {
-        getEditUser(user_id).then((result) => {
+        getUser(user_id).then((result) => {
             var data = result.data.data;
             var time = new Date(data.birthday);
             console.log("Time " + data.birthday.split("/"))

@@ -8,6 +8,9 @@ export function getMeta() {
 export function getStudents(params = {}) {
     return axios.get(BASE_URL, { params: params });
 }
+export function getStudent(student_id) {
+    return axios.get(BASE_URL + student_id);
+}
 export function deleteStudent(id) {
     return axios.delete(BASE_URL + id);
 }
