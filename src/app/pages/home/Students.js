@@ -11,6 +11,7 @@ import Delete from '@material-ui/icons/Delete';
 import Edit from '@material-ui/icons/Edit';
 import Visibility from '@material-ui/icons/Visibility';
 import { getMeta, getStudents, deleteStudent } from "../../crud/students.crud";
+import { Dropdown } from 'react-bootstrap';
 
 export default function Students(props) {
     useEffect(() => {
@@ -134,20 +135,21 @@ export default function Students(props) {
                     var path = props.history.location.pathname + "/";
                     return (
                         <>
-                            <Tooltip title="Xem">
-                                <Link to={path + tableMeta.rowData[0]} style={{ textDecoration: 'none', color: 'inherit' }}><Visibility fontSize="large" /></Link>
-                            </Tooltip>
-                            { auth.user.is_admin && 
-                                <>
-                                    <Tooltip title="Sửa">
-                                        <Link to={path + tableMeta.rowData[0] + "/edit"} style={{ textDecoration: 'none', color: 'inherit' }}><Edit fontSize="large" /></Link>
-                                    </Tooltip>
-
-                                    <Tooltip title="Xoá">
-                                        <Delete fontSize="large" onClick={() => { deleteItem(tableMeta.rowData[0]) }} />
-                                    </Tooltip>
-                                </>
-                            }
+                        <Dropdown>
+                            <Dropdown.Toggle variant="outline-info" id="dropdown-basic">
+                                <i class="flaticon-more-1"></i>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Link to={path + tableMeta.rowData[0]} className="dropdown-item" style={{ textDecoration: 'none', color: 'inherit' }}><i className="flaticon-information"></i> Xem</Link>
+                                {auth.user.is_admin &&
+                                    <>
+                                        <Link to={path + tableMeta.rowData[0] + "/edit"} className="dropdown-item" style={{ textDecoration: 'none', color: 'inherit' }}><i className="flaticon-edit"></i> Sửa</Link>
+                                        <Link to={"#"} className="dropdown-item" onClick={() => { deleteItem(tableMeta.rowData[0]) }}><i className="flaticon-delete"></i> Xoá</Link>
+                                    </>
+                                }
+                                <Link to={"/student-scores?university_class_id=" + tableMeta.rowData[6].id + "&student_id=" + tableMeta.rowData[0]} className="dropdown-item" style={{ textDecoration: 'none', color: 'inherit' }}><i className="flaticon-trophy"></i> Xem điểm</Link>                        
+                            </Dropdown.Menu>
+                        </Dropdown>
                         </>
                     )
                 },
@@ -163,6 +165,7 @@ export default function Students(props) {
     const options = {
         fiter: true,
         filterType: 'multiselect',
+        selectableRows: 'none',
         //serverSide: true,
         count: total,
         responsive: "scrollFullHeight",
