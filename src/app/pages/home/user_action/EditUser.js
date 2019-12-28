@@ -5,7 +5,7 @@ import { Formik } from "formik";
 import { getUser, editUser } from '../../../crud/users.crud'
 import swal from 'sweetalert';
 import Container from '@material-ui/core/Container';
-
+import { toastr } from 'react-redux-toastr';
 
 export default function EditPage(props) {
     useEffect(() => {
@@ -97,14 +97,17 @@ export default function EditPage(props) {
                                         formData.append("_method", "PUT")
                                         // console.log("formdata")
                                         // console.log(formData);
-                                        editUser(user_id, formData)
+                                        editUser(user_id, formData).then((data) => {
+                                            toastr.success("Thành công", data.data.messages[0]);
+                                            setSubmitting(false);
+                                            })
                                             .catch((e) => {
                                                 var messages;
                                                 if (e.response == null) {
-                                                    messages = ["Có lỗi xảy ra!"]
+                                                    toastr.error("Lỗi", 'Đã có lỗi xảy ra!');
                                                 }
                                                 else {
-                                                    messages = e.response.data.messages
+                                                    toastr.error("Lỗi", e.response.data.messages[0]);
                                                 }
                                                 setSubmitting(false);
                                                 setStatus(
@@ -262,14 +265,17 @@ export default function EditPage(props) {
                                         formData.append("password", values.password)
                                         formData.append("password_confirmation", values.password_confirmation)
                                         formData.append("_method", "PUT")
-                                        editUser(user_id, formData)
+                                        editUser(user_id, formData).then((data) => {
+                                            toastr.success("Thành công", data.data.messages[0]);
+                                            setSubmitting(false);
+                                            })
                                             .catch((e) => {
                                                 var messages;
                                                 if (e.response == null) {
-                                                    messages = ["Có lỗi xảy ra!"]
+                                                    toastr.error("Lỗi", 'Đã có lỗi xảy ra!');
                                                 }
                                                 else {
-                                                    messages = e.response.data.messages
+                                                    toastr.error("Lỗi", e.response.data.messages[0]);
                                                 }
                                                 setSubmitting(false);
                                                 setStatus(

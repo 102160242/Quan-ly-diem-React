@@ -8,7 +8,7 @@ import { createCourseClass } from "../../../crud/course_classes.crud";
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import swal from 'sweetalert';
 import classnames from 'classnames';
-
+import { toastr } from 'react-redux-toastr';
 
 export default function AddPage() {
     useEffect(() => {
@@ -146,14 +146,17 @@ export default function AddPage() {
                             onSubmit={(values, { setStatus, setSubmitting }) => {
                                 var data = values;
                                 data["score_columns"] = column;
-                                createCourseClass(data)
+                                createCourseClass(data).then((data) => {
+                                    toastr.success("Thành công", data.data.messages[0]);
+                                    setSubmitting(false);
+                                    })
                                     .catch((e) => {
                                         var messages;
                                         if (e.response == null) {
-                                            messages = ["Có lỗi xảy ra!"]
+                                            toastr.error("Lỗi", 'Đã có lỗi xảy ra!');
                                         }
                                         else {
-                                            messages = e.response.data.messages
+                                            toastr.error("Lỗi", e.response.data.messages[0]);
                                         }
                                         setSubmitting(false);
                                         setStatus(

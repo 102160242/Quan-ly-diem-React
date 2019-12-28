@@ -20,10 +20,6 @@ export function createUniversityClass(data){
   return axios.post(BASE_URL, data);
 }
 
-export function getClass(id){
-  return axios.get(BASE_URL + id);
-}
-
 export function editUniversityClass(id, data){
   return axios.patch(BASE_URL + id, data);
 }

@@ -9,6 +9,7 @@ import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import swal from 'sweetalert';
 import classnames from 'classnames';
 import { deleteColumn } from '../../../crud/score_columns.crud';
+import { toastr } from 'react-redux-toastr';
 
 export default function EditPage(props) {
     useEffect(() => {
@@ -172,14 +173,17 @@ export default function EditPage(props) {
                             onSubmit={(values, { setStatus, setSubmitting }) => {
                                 var data = values;
                                 data["score_columns"] = column;
-                                editCourseClass( courseclass_id, data)
+                                editCourseClass( courseclass_id, data).then((data) => {
+                                    toastr.success("Thành công", data.data.messages[0]);
+                                    setSubmitting(false);
+                                    })
                                     .catch((e) => {
                                         var messages;
                                         if (e.response == null) {
-                                            messages = ["Có lỗi xảy ra!"]
+                                            toastr.error("Lỗi", 'Đã có lỗi xảy ra!');
                                         }
                                         else {
-                                            messages = e.response.data.messages
+                                            toastr.error("Lỗi", e.response.data.messages[0]);
                                         }
                                         setSubmitting(false);
                                         setStatus(

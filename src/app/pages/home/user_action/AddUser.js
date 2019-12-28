@@ -3,7 +3,7 @@ import { Portlet, PortletBody } from "../../../partials/content/Portlet";
 import Container from '@material-ui/core/Container';
 import { Formik } from "formik";
 import { createUser } from '../../../crud/users.crud'
-
+import { toastr } from 'react-redux-toastr';
 
 export default function AddPage() {
     useEffect(() => {
@@ -40,14 +40,17 @@ export default function AddPage() {
                                 formData.append("phone_number", values.phone_number)
                                 formData.append("password", values.password)
                                 formData.append("password_confirmation", values.password_confirmation)
-                                createUser(formData)
+                                createUser(formData).then((data) => {
+                                    toastr.success("Thành công", data.data.messages[0]);
+                                    setSubmitting(false);
+                                    })
                                     .catch((e) => {
                                         var messages;
                                         if (e.response == null) {
-                                            messages = ["Có lỗi xảy ra!"]
+                                            toastr.error("Lỗi", 'Đã có lỗi xảy ra!');
                                         }
                                         else {
-                                            messages = e.response.data.messages
+                                            toastr.error("Lỗi", e.response.data.messages[0]);
                                         }
                                         setSubmitting(false);
                                         setStatus(

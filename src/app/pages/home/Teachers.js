@@ -155,7 +155,7 @@ export default function Teachers(props) {
                             {auth.user.is_admin &&
                                 <>
                                     <Tooltip title="Sửa">
-                                        <Link to={path + tableMeta.rowData[0] + "/edit"} style={{ textDecoration: 'none', color: 'inherit' }}><Edit fontSize="large" /></Link>
+                                        <Link to={path + tableMeta.rowData[1].id + "/edit"} style={{ textDecoration: 'none', color: 'inherit' }}><Edit fontSize="large" /></Link>
                                     </Tooltip>
 
                                     <Tooltip title="Xoá">

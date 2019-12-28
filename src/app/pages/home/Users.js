@@ -7,6 +7,7 @@ import { red } from "@material-ui/core/colors";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { getTextLabels } from './_datatable_locale';
 import swal from 'sweetalert';
+import { toastr } from 'react-redux-toastr';
 
 import Tooltip from "@material-ui/core/Tooltip";
 import Avatar from "@material-ui/core/Avatar";

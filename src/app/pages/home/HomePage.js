@@ -23,6 +23,7 @@ import Scores from "./Scores";
 import StudentScores from "./StudentScores";
 import UniversityClasses_Add from "./UniversityClasses_action/Add";
 import UniversityClasses_Edit from "./UniversityClasses_action/Edit";
+import Teacher_Edit from "./teacher_action/Edit";
 
 export default function HomePage() {
   return (
@@ -34,25 +35,33 @@ export default function HomePage() {
         }
         <Route path="/builder" component={Builder} />
         <Route path="/dashboard" component={Dashboard} />
+
         <Route exact path="/users" component={Users} />
         <Route exact path="/users/new" component={User_Add} />
         <Route exact path='/users/:user_id' component={User_Show}/>
         <Route exact path="/users/:user_id/edit" component={User_Edit} />
         <Route path="/users" component={Users} />
+
         <Route exact path="/teachers" component={Teachers} />
         <Route exact path="/teachers/:teacher_id" component ={Teacher_Show}/>
+        <Route exact path="/teachers/:teacher_id/edit" component ={Teacher_Edit}/>
+
         <Route exact path="/students" component={Students} />
         <Route exact path="/students/:student_id" component={Student_Show}/>
+        
         <Route exact path="/university-classes" component={UniversityClasses} />
+        <Route exact path="/university-classes/new" component={UniversityClasses_Add} />
         <Route exact path="/university-classes/:class_id" component ={UniversityClass_Show}/>
+        <Route exact path="/university-classes/:universityclass_id/edit" component={UniversityClasses_Edit} />
+
         <Route exact path="/courses" component={Courses} />
         <Route exact path="/courses/:course_id" component={Courses_Show} />
-        <Route exact path="/university-classes/:universityclass_id/edit" component={UniversityClasses_Edit} />
-        <Route exact path="/university-classes/new" component={UniversityClasses_Add} />
+
         <Route exact path="/course-classes" component={CourseClasses} />
-        <Route exact path="/course-classes/:courseclass_id" component={CourseClasses_Show} />
         <Route exact path="/course-classes/new" component={CourseClasses_Add} />
+        <Route exact path="/course-classes/:courseclass_id" component={CourseClasses_Show} />
         <Route exact path="/course-classes/:courseclass_id/edit" component={CourseClasses_Edit} />
+        
         <Route path="/course-class-scores" component={Scores} />
         <Route path="/student-scores" component={StudentScores} />
         
