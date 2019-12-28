@@ -180,16 +180,19 @@ export default function EditPage(props) {
                                                                                 <div className="form-check-inline">
                                                                                     <div className="form-control border-0">
                                                                                         <label className="form-check-label" htmlFor="radio1">
-                                                                                            <input type="radio" className="form-check-input" id="radio1" name="gender" value="1" checked={values.gender} onChange={handleChange} />Nam</label>
+                                                                                            <input type="radio" className="form-check-input" id="radio1" name="gender" value="1" checked={(values.gender == "1") ? true : false} onChange={handleChange} />Nam</label>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div className="form-check-inline">
                                                                                     <div className="form-control border-0">
                                                                                         <label className="form-check-label" htmlFor="radio2">
-                                                                                            <input type="radio" className="form-check-input" id="radio2" name="gender" checked={!values.gender} value="0" onChange={handleChange} />Nữ</label>
+                                                                                            <input type="radio" className="form-check-input" id="radio2" name="gender" value="0" checked={(values.gender == "0") ? true : false} onChange={handleChange} />Nữ</label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                            {
+                                                                                console.log(values.gender)
+                                                                            }
                                                                         </div>
                                                                         <div className="form-group row">
                                                                             <label className="col-xl-3 col-lg-3 col-form-label">Ngày sinh </label>
