@@ -11,8 +11,24 @@ class SubHeader extends React.Component {
   subheaderCssClasses = this.props.htmlClassService.classes.subheader;
   subheaderContainerCssClasses = this.props.htmlClassService.classes
     .subheader_container;
-
   render() {
+    const addBtn = () =>
+    {
+      if(this.props.auth.user.is_admin)
+      {
+        var pages = ["/users", "/students", "/university-classes", "/courses", "/course-classes"];
+        if(pages.includes(this.props.history.location.pathname))
+        {
+          return <Link
+                    to={this.props.history.location.pathname + "/new"}
+                    className="btn btn-label-warning btn-bold btn-sm btn-icon-h kt-margin-l-10"
+                  >
+                    Thêm mới
+                  </Link>
+        }
+      }
+      return <></>
+    }
     return (
       <div
         id="kt_subheader"
@@ -42,12 +58,7 @@ class SubHeader extends React.Component {
 
               </>
             )} */}
-            <Link
-              to={this.props.history.location.pathname + "/new"}
-              className="btn btn-label-warning btn-bold btn-sm btn-icon-h kt-margin-l-10"
-            >
-              Thêm mới
-            </Link>
+            { addBtn() }
           </div>
 
           {/* <div className="kt-subheader__toolbar">
@@ -71,7 +82,8 @@ const mapStateToProps = store => ({
   subheaderMobileToggle: objectPath.get(
     store.builder.layoutConfig,
     "subheader.mobile-toggle"
-  )
+  ),
+  auth: store.auth,
 });
 
 export default withRouter(connect(mapStateToProps)(SubHeader));

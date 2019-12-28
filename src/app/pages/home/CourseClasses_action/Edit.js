@@ -164,11 +164,11 @@ export default function EditPage(props) {
                         <Formik
                             enableReinitialize={true}
                             initialValues={{
-                                course_id: courseClassData.course.id,
+                                course_id: courseClassData.course && courseClassData.course.id,
                                 name: courseClassData.name,
                                 credits: courseClassData.credits,
                                 year: courseClassData.year,
-                                teacher_id: courseClassData.teacher.id,
+                                teacher_id: courseClassData.teacher && courseClassData.teacher.id,
                                 semester: courseClassData.semester,
                             }}
                             onSubmit={(values, { setStatus, setSubmitting }) => {
@@ -270,7 +270,7 @@ export default function EditPage(props) {
                                                 <div className="row">
                                                     <div className="col-xl-12">
 
-                                                        {column.map((i, k) => {
+                                                        {column && column.map((i, k) => {
                                                             return (
                                                                 <div className="form-group row" key={k}>
                                                                     <label className="col-xl-2 col-lg-2 col-form-label">Thông tin cột điểm</label>

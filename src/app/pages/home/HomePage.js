@@ -15,6 +15,8 @@ import CourseClasses_Add from './CourseClasses_action/Add'
 import CourseClasses_Edit from './CourseClasses_action/Edit'
 import Scores from "./Scores";
 import StudentScores from "./StudentScores";
+import DataExport from "./DataExport";
+import DataImport from "./DataImport";
 
 export default function HomePage() {
   return (
@@ -39,6 +41,9 @@ export default function HomePage() {
         <Route exact path="/course-classes/:courseclass_id/edit" component={CourseClasses_Edit} />
         <Route path="/course-class-scores" component={Scores} />
         <Route path="/student-scores" component={StudentScores} />
+        
+        <Route path="/data/import" component={DataImport} />
+        <Route path="/data/export" component={DataExport} />
         <Redirect to="/error/404" />
       </Switch>
     </Suspense>

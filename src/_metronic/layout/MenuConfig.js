@@ -2,13 +2,13 @@ export default {
   header: {
     self: {},
     items: [
-      {
-        title: "Dashboards",
-        root: true,
-        alignment: "left",
-        page: "dashboard",
-        translate: "MENU.DASHBOARD"
-      }
+      // {
+      //   title: "Dashboards",
+      //   root: true,
+      //   alignment: "left",
+      //   page: "dashboard",
+      //   translate: "MENU.DASHBOARD"
+      // }
     ]
   },
   aside: {
@@ -76,6 +76,21 @@ export default {
         root: true,
         icon: "fas fa-user-graduate",
         page: "student-scores"
+      },
+      { section: "Import/Export dữ liệu", admin_only: true },
+      {
+        title: "Import",
+        root: true,
+        icon: "fas fa-file-import",
+        page: "data/import",
+        admin_only: true
+      },
+      {
+        title: "Export",
+        root: true,
+        icon: "fas fa-file-export",
+        page: "data/export",
+        admin_only: true
       },
     ]
   }
