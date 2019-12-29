@@ -10,7 +10,7 @@ export function deleteUser(id) {
   }
 
 export function createUser(data){
-  console.log(data)
+  //console.log(data)
   return axios.post(BASE_URL +"?XDEBUG_SESSION_START=F56F122D", data, {
     headers: {
       "content-type": "multipart/form-data"
