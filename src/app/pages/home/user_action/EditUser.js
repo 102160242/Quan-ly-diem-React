@@ -24,7 +24,6 @@ export default function EditPage(props) {
         getUser(user_id).then((result) => {
             var data = result.data.data;
             var time = new Date(data.birthday);
-            console.log("Time " + data.birthday.split("/"))
             data.birthday = data.birthday.split("/").reverse().join("-");
             setData(data);
             setAvatar(data.avatar_url);
@@ -190,9 +189,6 @@ export default function EditPage(props) {
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            {
-                                                                                console.log(values.gender)
-                                                                            }
                                                                         </div>
                                                                         <div className="form-group row">
                                                                             <label className="col-xl-3 col-lg-3 col-form-label">Ngày sinh </label>

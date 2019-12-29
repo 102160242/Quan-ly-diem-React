@@ -46,7 +46,6 @@ export default function AddPage() {
                             }}
                             onSubmit={(values, { setStatus, setSubmitting }) => {
                                 var data = values;
-                                console.log(data)
                                 createCourse(data).then((data) => {
                                     toastr.success("Thành công", data.data.messages[0]);
                                     setSubmitting(false);

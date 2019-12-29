@@ -14,3 +14,11 @@ export function getStudent(student_id) {
 export function deleteStudent(id) {
     return axios.delete(BASE_URL + id);
 }
+
+export function createStudent(data){
+    return axios.post(BASE_URL, data);
+}
+
+export function editStudent(id, data){
+    return axios.patch(BASE_URL + id, data);
+}

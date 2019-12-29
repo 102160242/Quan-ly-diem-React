@@ -26,6 +26,8 @@ import UniversityClasses_Edit from "./UniversityClasses_action/Edit";
 import Teacher_Edit from "./teacher_action/Edit";
 import Course_Add from "./course_action/Add";
 import Course_Edit from "./course_action/Edit";
+import Student_Add from "./student_action/Add";
+import Student_Edit from "./student_action/Edit";
 import DataExport from "./DataExport";
 import DataImport from "./DataImport";
 
@@ -51,7 +53,9 @@ export default function HomePage() {
         <Route exact path="/teachers/:teacher_id/edit" component ={Teacher_Edit}/>
 
         <Route exact path="/students" component={Students} />
+        <Route exact path="/students/new" component={Student_Add}/>
         <Route exact path="/students/:student_id" component={Student_Show}/>
+        <Route exact path="/students/:student_id/edit" component={Student_Edit}/>
         
         <Route exact path="/university-classes" component={UniversityClasses} />
         <Route exact path="/university-classes/new" component={UniversityClasses_Add} />
